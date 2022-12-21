@@ -1,0 +1,19 @@
+[{
+  "_id": {
+    "$oid": "6393460a72bb6b4053567a67"
+  },
+  "name": "debsis",
+  "email": "deborinha@gmail.com"
+},{
+  "_id": {
+    "$oid": "63a32ba716d7040e8f778404"
+  },
+  "name": "Bruno",
+  "email": "bruno@123.com"
+},{
+  "_id": {
+    "$oid": "63a32ce8ca91c3357e4d5d3c"
+  },
+  "name": "Thiggas",
+  "email": "thigas@gmail.com"
+}]
