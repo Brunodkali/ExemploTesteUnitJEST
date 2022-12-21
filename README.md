@@ -1,3 +1,3 @@
 # ExemploTesteUnitJEST
 
-> Exemplo de teste unitário utilizando JEST e JavaScript.
+> Exemplo de teste unitário utilizando JEST, JavaScript e MongoDB.
