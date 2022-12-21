@@ -13,9 +13,16 @@ describe('Teste de criação de usuários', () => {
         const response = await request(server)
         .post('/create')
         .send({
-            name: "Thiggas",
-            email: "thigas@gmail.com"
+            name: "Debs",
+            email: "debs@gmail.com",
         });
+        expect(response.status).toBe(200);
+    });
+
+    it('Listar usuários', async () => {
+        const response = await request(server)
+        .get('/listar')
+        console.log(response.body);
         expect(response.status).toBe(200);
     });
 });

@@ -17,15 +17,33 @@ app.use(router.post('/create', async (req, res) => {
         try {
             const addUser = await Usuario.create({
                 name: name,
-                email: email
+                email: email,
               });
+
+                req.userId = name;
                 return res.status(200).send({ user: name });
             }
         catch(err) {
             return res.status(500).send({ error: err });
         }
     }
-    }));
+}));
+
+app.use(router.get('/listar', async (req, res) => { 
+    try {
+        res.status(200).json(
+            [
+                {id:1, nome:'Luiz'},
+                {id:2, nome:'Bruno'},
+                {id:3, nome:'Débora'},
+                {id:4, nome:'Carlos'}
+            ]
+        );
+    }catch(err) {
+        return res.status(404).send({ error: err });
+    }
+    
+}));
 
 const server = app.listen(port, () => {
     console.log(`Servidor Rodando na porta: ${port}`);
