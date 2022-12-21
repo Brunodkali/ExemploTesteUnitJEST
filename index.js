@@ -54,7 +54,6 @@ app.use(router.post('/listarEspecifico', async (req, res) => {
             name: name,
             email: email
         });
-        console.log(listUser)
         return res.status(200).json({ listUser });
     }catch(err) {
         return res.status(404).send({ error: err });
