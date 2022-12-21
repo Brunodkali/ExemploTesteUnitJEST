@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(cors());
 
 app.use(router.post('/create', async (req, res) => {
-    const { email, name } = req.body;
+    const { name, email } = req.body;
     
     if(email == null || name == null) {
         return res.status(400).send({ error: "Dados insuficientes" });
@@ -19,11 +19,8 @@ app.use(router.post('/create', async (req, res) => {
                 name: name,
                 email: email,
               });
-
-                req.userId = name;
-                return res.status(200).send({ user: name });
-            }
-        catch(err) {
+            return res.status(200).send({ user: name });
+        }catch(err) {
             return res.status(500).send({ error: err });
         }
     }
@@ -31,14 +28,34 @@ app.use(router.post('/create', async (req, res) => {
 
 app.use(router.get('/listar', async (req, res) => { 
     try {
-        res.status(200).json(
-            [
-                {id:1, nome:'Luiz'},
-                {id:2, nome:'Bruno'},
-                {id:3, nome:'Débora'},
-                {id:4, nome:'Carlos'}
-            ]
-        );
+        const arrayUser = []
+        const listUser = await Usuario.find({});
+
+        for (let i = 0; i < listUser.length; i++) {
+            const nameUser = listUser[i]['name'];
+            const emailUser = listUser[i]['email'];
+            const objUser = {
+                name: nameUser,
+                email: emailUser
+            }
+            arrayUser.push(objUser)
+        }
+        return res.status(200).json({ arrayUser });
+    }catch(err) {
+        return res.status(404).send({ error: err });
+    }  
+}));
+
+app.use(router.post('/listarEspecifico', async (req, res) => { 
+    const { name, email } = req.body;
+
+    try {
+        const listUser = await Usuario.find({
+            name: name,
+            email: email
+        });
+        console.log(listUser)
+        return res.status(200).json({ listUser });
     }catch(err) {
         return res.status(404).send({ error: err });
     }

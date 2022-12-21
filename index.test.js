@@ -13,16 +13,27 @@ describe('Teste de criação de usuários', () => {
         const response = await request(server)
         .post('/create')
         .send({
-            name: "Debs",
-            email: "debs@gmail.com",
+            name: "Bruno",
+            email: "bruno@gmail.com",
         });
         expect(response.status).toBe(200);
     });
 
     it('Listar usuários', async () => {
+        jest.setTimeout(30000)
         const response = await request(server)
         .get('/listar')
         console.log(response.body);
+        expect(response.status).toBe(200);
+    });
+
+    it('Listar usuário específico', async () => {
+        const response = await request(server)
+        .post('/listarEspecifico')
+        .send({
+            name: "Debs",
+            email: "debs@gmail.com",
+        });
         expect(response.status).toBe(200);
     });
 });
