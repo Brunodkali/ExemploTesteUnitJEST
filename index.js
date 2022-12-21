@@ -15,15 +15,11 @@ app.use(router.post('/create', async (req, res) => {
         return res.status(400).send({ error: "Dados insuficientes" });
     }else {
         try {
-            const newUser = {
-                name: name,
-                email: email
-            };
             const addUser = await Usuario.create({
                 name: name,
                 email: email
               });
-                return res.status(200).send({ user: newUser });
+                return res.status(200).send({ user: name });
             }
         catch(err) {
             return res.status(500).send({ error: err });
